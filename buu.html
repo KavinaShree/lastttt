@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Message</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Styling the video as the background */
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 0;
+            pointer-events: none; /* Make sure the video doesn't block button clicks */
+        }
+
+        #message-box {
+            border: 2px solid #f7c6c7;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9); /* Slight transparency to show the video behind */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 90%; 
+            width: 100%; 
+            max-width: 500px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(45deg, #f8a5c2, #f76c6c);
+            color: white;
+            border-radius: 10px;
+            transition: background 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #f76c6c, #f8a5c2);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video as the background -->
+    <video id="video-background" autoplay loop muted>
+        <source src="https://kavinashree.github.io/bb/bb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="message-box">
+        <p id="message">Do you love me?</p>
+        <div class="button-container">
+            <button onclick="handleYes()">Yes</button>
+            <button onclick="handleNo()">No</button>
+        </div>
+    </div>
+
+    <script>
+        function setMessage(text) {
+            document.getElementById("message").innerText = text;
+        }
+
+        function handleYes() {
+            let currentMessage = document.getElementById("message").innerText;
+            if (currentMessage.includes("really!!")) {
+                setMessage("Here, click YES for the last time!");
+                document.querySelector(".button-container").innerHTML = '<button onclick="finalYes()">Yes</button>';
+            } else {
+                setMessage("Wahhhh really!!!! I wanna tell you something, Click Yes to listen");
+            }
+        }
+
+        function handleNo() {
+            let currentMessage = document.getElementById("message").innerText;
+
+            if (currentMessage === "Do you love me?") {
+                setMessage("Seriously NO!!!! Atlest konjamavethe LOVE");
+            } else if (currentMessage.includes("Seriously")) {
+                setMessage("Are you mad? Please click YES romba asinggama irukke!");
+            } else if (currentMessage.includes("Are you mad")) {
+                setMessage("Waste of time(No more talking Click Yesss).");
+            } else if (currentMessage === "Click YES.") {
+                setMessage("Click YES.");
+            } else if (currentMessage.includes("Wahhhh")) {
+                setMessage("Seriously, you!!!! Click YES!");
+            } else if (currentMessage.includes("Seriously, you!!!!")) {
+                setMessage("Come on, click YES!");
+            } else if (currentMessage.includes("Come on, click YES!")) {
+                setMessage("Click Yessssssssssssssssss!");
+            } else if (currentMessage === "Click Yessssssssssssssssss!") {
+                setMessage("Click Yessssssssssssssssss!");
+            }
+        }
+
+        function finalYes() {
+            setMessage("You did it! End of the message sequence.");
+            setTimeout(function() {
+                window.location.href = "https://kavinashree.github.io/last/kausu.html";
+            }, 2000); // Wait 2 seconds before redirecting
+        }
+    </script>
+
+</body>
+</html>
